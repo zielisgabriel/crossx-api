@@ -1,5 +1,5 @@
 from server import app, db;
-import controllers.list_students, controllers.create_student, controllers.delete_student, controllers.find_by_student_name;
+import controllers.list_students, controllers.create_student, controllers.delete_student, controllers.find_by_student_name, controllers.update_student, controllers.make_payment, controllers.list_student_payment_history;
 from services.update_student_status import update_student_status;
 from apscheduler.schedulers.background import BackgroundScheduler;
 

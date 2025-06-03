@@ -1,5 +1,5 @@
 from server import app, db;
-from flask import jsonify;
+from flask import jsonify, Response;
 from models.Student import Student;
 
 from exceptions.StudentNotFoundException import StudentNotFoundException;
@@ -11,10 +11,13 @@ def deleteStudent(student_id):
 
         if student is None:
             raise StudentNotFoundException();
+    
+        if student.status == "Matriculado":
+            raise Exception("O aluno não pode ser removido, pois está matriculado.");
 
         db.session.delete(student);
-        db.session.commit();    
+        db.session.commit();
 
-        return jsonify({"message": "Student deleted"});
+        return Response(status=200);
     except Exception as e:
         return jsonify({"message": str(e)}), 400;

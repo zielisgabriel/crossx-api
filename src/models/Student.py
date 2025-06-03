@@ -10,7 +10,7 @@ class Student(db.Model):
 
     student_id: Mapped[int] = mapped_column(Integer, primary_key=True);
     name: Mapped[str] = mapped_column(String(100), nullable=False);
-    status: Mapped[str] = mapped_column(String(15), nullable=False, default="Matriculado");
+    status: Mapped[str] = mapped_column(String(15), nullable=False, default="Não Matriculado");
     city: Mapped[str] = mapped_column(String(20), nullable=False);
     address: Mapped[str] = mapped_column(String(180), nullable=False);
     state: Mapped[str] = mapped_column(String(20), nullable=False);

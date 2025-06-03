@@ -1,6 +1,6 @@
 from datetime import datetime
 from server import app, db;
-from flask import request, jsonify;
+from flask import request, jsonify, Response;
 from models.Student import Student;
 from dateutil.relativedelta import relativedelta
 
@@ -13,17 +13,9 @@ def createStudent():
     state = data["state"];
     phone = data["phone"];
     address = data["address"];
-    status = data["status"];
-
-
-    if status == "Matriculado":
-        registration_date = datetime.now();
-        due_date = registration_date + relativedelta(months=1);
-        termination_date = None;
-    else:
-        registration_date = None;
-        due_date = None;
-        termination_date = None;
+    registration_date = None;
+    termination_date = None;
+    due_date = None;
 
     student = Student(
         name=name,
@@ -31,7 +23,6 @@ def createStudent():
         state=state,
         phone=phone,
         address=address,
-        status=status,
         registration_date=registration_date,
         termination_date=termination_date,
         due_date=due_date,
@@ -40,4 +31,4 @@ def createStudent():
     db.session.add(student);
     db.session.commit();
 
-    return jsonify({"message": "Student created"});
+    return Response(status=201);
