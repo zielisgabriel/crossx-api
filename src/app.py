@@ -1,14 +1,16 @@
-from server import app, db;
-import controllers.list_students, controllers.create_student, controllers.delete_student, controllers.find_by_student_name, controllers.update_student, controllers.make_payment, controllers.list_student_payment_history;
-from services.update_student_status import update_student_status;
-from apscheduler.schedulers.background import BackgroundScheduler;
+from server import app, db
+
+import controllers.list_students_controller, controllers.create_student_controller, controllers.delete_student_controller, controllers.update_student_controller, controllers.find_student_by_name_controller, controllers.list_student_payment_history_controller, controllers.make_payment_controller
+
+from services.update_student_status import update_student_status
+from apscheduler.schedulers.background import BackgroundScheduler
 
 with app.app_context():
-    db.create_all();
+    db.create_all()
 
-scheduler = BackgroundScheduler();
-scheduler.add_job(func=update_student_status, trigger="interval", seconds=10);
-scheduler.start();
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=update_student_status, trigger="interval", seconds=10)
+scheduler.start()
 
 if __name__ == "__main__":
-    app.run(debug=True);
+    app.run(debug=True)
