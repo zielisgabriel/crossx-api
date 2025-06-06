@@ -13,4 +13,4 @@ scheduler.add_job(func=update_student_status, trigger="interval", seconds=10)
 scheduler.start()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=3103)
